@@ -35,15 +35,6 @@ steps:
     pytest
   displayName: 'pytest'
 
-- task: PowerShell@2
+- powershell: ./build.ps1
   env:
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-  inputs:
-   targetType: inline
-   script: |
-      $url = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/_apis/build/definitions/$($env:SYSTEM_DEFINITIONID)?api-version=5.0"
-      Write-Host "URL: $url"
-      $pipeline = Invoke-RestMethod -Uri $url -Headers @{
-          Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
-      }
-      Write-Host "Pipeline = $($pipeline | ConvertTo-Json -Depth 100)"
+      system_accesstoken: $(System.AccessToken)
