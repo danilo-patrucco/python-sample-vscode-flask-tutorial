@@ -29,6 +29,6 @@ steps:
     pytest
   displayName: 'pytest'
 
-- powershell: ./build.ps1
+- bash: echo This script could use $SYSTEM_ACCESSTOKEN
   env:
-      system_accesstoken: $(System.AccessToken)
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
